@@ -1,12 +1,10 @@
 body{
-  background-color: rgb(56,58,89);
-  
+  background-color: rgb(40,42,54);
 }
+
 .mainContainer {
   display: flex;
   justify-content: center;
-  align-itm: center;
-  flex-direction: column;
   width: 100%;
   margin-top: 64px;
 }
@@ -17,31 +15,40 @@ body{
   justify-content: center;
   max-width: 600px;
 }
-.title {
-  text-align: center;
-  font-weight: 600;
-  color: rgb(255,121,198)
-}
+
 .header {
   text-align: center;
   font-size: 32px;
   font-weight: 600;
-  color: rgb(255,121,198)
+  color: rgb(255,121,198);
 }
 
 .bio {
   text-align: center;
-  color: rgb(248,248,242);
+  color: ghostwhite;
   margin-top: 16px;
 }
 
 .waveButton {
   cursor: pointer;
   margin-top: 16px;
-  padding: 10px;
-  border: 2px solid green;
+  padding: 8px;
+  border: 0;
   border-radius: 5px;
-  background-color: rgb(40,42,54);
-  color: rgb(248,248,242);
-  font: bold;
+  background-color: rgb(56,58,89);
+  color: rgb(255,121,198);
+  font: large bold;
+  font-family: Helvetica;
+}
+.waveButton:hover{
+  cursor: pointer;
+  margin-top: 16px;
+  padding: 8px;
+  border: 0;
+  border-radius: 5px;
+  background-color: rgb(56,58,89);
+  color: rgb(80,250,123);
+  font: large bold;
+  font-family: cursive;
+  transition: ease-in-out;
 }

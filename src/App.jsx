@@ -10,19 +10,15 @@ export default function App() {
   
   return (
     <div className="mainContainer">
-      
-      
-    
-
       <div className="dataContainer">
-        <div className="title"><h1>Wave Me Portal</h1></div>
-        
         <div className="header">
         👋 Hey there!
         </div>
 
         <div className="bio">
-        I am farza and I worked on self-driving cars so that's pretty cool right? Connect your Ethereum wallet and wave at me!
+        I am Harsh Chauhan, a Full Stack Developer from India.
+          <br/>Fun Fact 🤯: A minute is enough for me to solve a Rubik's Cube.
+        <br/>Connect your Ethereum wallet and wave at me!
         </div>
 
         <button className="waveButton" onClick={wave}>
