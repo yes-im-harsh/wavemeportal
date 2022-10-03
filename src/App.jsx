@@ -33,16 +33,30 @@ const findMetamaskAccount = async() => {
 export default function App() {
   const [currentAccount, setCurrentAccount] = useState("")
 
+  const connectWallet = async () => {
+    try {
+      const ethereum = getEthereumObject();
+      if (!ethereum) {
+        alert("Get MetaMask!");
+        return;
+      }
+
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
+
+      console.log("Connected", account[0]);
+      setCurrentAccount(account[0]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(async() => {
     const account = await findMetamaskAccount()
     if(account !== null){setCurrentAccount(account)}
    
   },[])
-  
-
-  const wave = () => {
-    
-  }
   
   return (
     <div className="mainContainer">
@@ -57,9 +71,17 @@ export default function App() {
         <br/>Connect your Ethereum wallet and wave at me!
         </div>
 
-        <button className="waveButton" onClick={wave}>
+        <button className="waveButton" onClick={null}>
           Wave at Me 👋
         </button>
+        {/*
+         * If there is no currentAccount render this button
+         */}
+        {!currentAccount && (
+          <button className="waveButton" onClick={connectWallet}>
+            Connect Wallet 🔐
+          </button>
+        )}
       </div>
     </div>
   );
