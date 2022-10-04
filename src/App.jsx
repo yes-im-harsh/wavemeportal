@@ -65,9 +65,18 @@ export default function App() {
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
-        const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+        const waveMePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        let count = await wavePortalContract.getTotalWaves();
+        let count = await waveMePortalContract.getTotalWaves();
+        console.log("Retrieved total wave count...", count.toNumber());
+
+        const waveTxn = await waveMePortalContract.wave()
+        console.log("Mining...", waveTxn.hash)
+
+        await waveTxn.wait()
+        console.log("Mined--", waveTxn.hash)
+
+        count = await waveMePortalContract.getTotalWaves()
         console.log("Retrieved total wave count...", count.toNumber());
       } else {
         console.log("Ethereum object doesn't exist!");
