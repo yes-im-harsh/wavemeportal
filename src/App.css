@@ -52,3 +52,14 @@ body{
   font-family: cursive;
   transition: ease-in-out;
 }
+
+.stats{
+  color: rgb(255,121,198);
+}
+
+.para{
+  color: rgb(255,121,198);
+}
+.highligted-text{
+  color: rgb(80,250,123);
+}

@@ -33,6 +33,7 @@ const findMetamaskAccount = async() => {
 
 export default function App() {
   const [currentAccount, setCurrentAccount] = useState("")
+  const [count, setCount] = useState(0)
 
   //variable for contractAddress
   const contractAddress = "0xC942C55eB12a21dC8E7eB5752294C572E9b1DDe5"
@@ -78,6 +79,7 @@ export default function App() {
 
         count = await waveMePortalContract.getTotalWaves()
         console.log("Retrieved total wave count...", count.toNumber());
+        setCount(count.toNumber())
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -104,6 +106,11 @@ export default function App() {
           <br/>Fun Fact 🤯: A minute is enough for me to solve a Rubik's Cube.
         <br/>Connect your Ethereum wallet and wave at me!
         </div>
+
+        {!count || count === 0 ? (<p className="para">Wan to know Total👋? <span className="highligted-text"> Then Wave at me 😀</span></p>) : (<div className="stats">
+          <h3>Total 👋: {count}</h3>
+        </div>)}
+        
 
         <button className="waveButton" onClick={wave}>
           Wave at Me 👋
