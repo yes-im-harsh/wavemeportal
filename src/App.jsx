@@ -36,7 +36,7 @@ export default function App() {
   const [count, setCount] = useState(0)
 
   //variable for contractAddress
-  const contractAddress = "0xC942C55eB12a21dC8E7eB5752294C572E9b1DDe5"
+  const contractAddress = "0xEa909d5a29829245A2f583d233730Cf249a9b9E5"
   //variable for contractABI
   const contractABI = abi.abi;
 
