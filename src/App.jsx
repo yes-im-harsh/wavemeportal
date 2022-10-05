@@ -36,6 +36,7 @@ export default function App() {
   const [count, setCount] = useState(0)
   //Stroing waves
   const [allWaves, setAllWaves] = useState([]);
+  const [message, setMessage] = useState("")
 
   //variable for contractAddress
   const contractAddress = "0xEa909d5a29829245A2f583d233730Cf249a9b9E5"
@@ -104,7 +105,7 @@ export default function App() {
         console.log("Retrieved total wave count...", count.toNumber());
 
         //Hardcoding .wave() for now, later will take input from user.
-        const waveTxn = await waveMePortalContract.wave("this is a message")
+        const waveTxn = await waveMePortalContract.wave(message)
         console.log("Mining...", waveTxn.hash)
 
         await waveTxn.wait()
@@ -126,6 +127,15 @@ export default function App() {
     if(account !== null){setCurrentAccount(account), getAllWaves()}
     
   },[count])
+
+  const handleInput = (e) => {
+    
+  }
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    wave();
+  }
   
   return (
     <div className="mainContainer">
@@ -140,22 +150,24 @@ export default function App() {
         <br/>Connect your Ethereum wallet and wave at me!
         </div>
 
-        {!count || count === 0 ? (<p className="para">Total👋: ?, <span className="highligted-text"> Please Wave at me 😀</span></p>) : (<div className="stats">
+        {!count || count === 0 ? (<p className="para">Total👋: ?, <span className="highligted-text"> Please Connect your wallet ->  Add a comment -> Wave at me 😀</span></p>) : (<div className="stats">
           <h3>Total 👋: {count}</h3>
         </div>)}
-        
 
-        <button className="waveButton" onClick={wave}>
+        <form className="form" onSubmit={handleFormSubmit}>
+        <input className="input" type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Comment Something!"/>
+        {!currentAccount ? (
+          <button className="waveButton" onClick={connectWallet}>
+            Connect Wallet 🔐
+          </button> 
+        ): (<button className="waveButton">
           Wave at Me 👋
-        </button>
+        </button>)}
+        </form>
         {/*
          * If there is no currentAccount render this button
          */}
-        {!currentAccount && (
-          <button className="waveButton" onClick={connectWallet}>
-            Connect Wallet 🔐
-          </button>
-        )}
+        
 
         <div>
           <h2 className="stats">All 👋</h2>
