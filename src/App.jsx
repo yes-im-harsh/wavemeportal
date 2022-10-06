@@ -39,7 +39,7 @@ export default function App() {
   const [message, setMessage] = useState("")
 
   //variable for contractAddress
-  const contractAddress = "0xEa909d5a29829245A2f583d233730Cf249a9b9E5"
+  const contractAddress = "0x56057A406bBB47cc5d9e79cAc506E45e503B85F1"
   //variable for contractABI
   const contractABI = abi.abi;
 
@@ -158,7 +158,7 @@ export default function App() {
         <input className="input" type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Comment Something!"/>
         {!currentAccount ? (
           <button className="waveButton" onClick={connectWallet}>
-            Connect Wallet 🔐
+            Connect Wallet 🕺 🔐
           </button> 
         ): (<button className="waveButton">
           Wave at Me 👋
