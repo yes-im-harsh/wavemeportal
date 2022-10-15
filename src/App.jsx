@@ -85,8 +85,9 @@ export default function App() {
         method: "eth_requestAccounts",
       });
 
-      console.log("Connected", account[0]);
-      setCurrentAccount(account[0]);
+      console.log("Connected", accounts[0]);
+      setCurrentAccount(accounts[0]);
+      console.log(currentAccount)
     } catch (error) {
       console.error(error);
     }
@@ -124,9 +125,12 @@ export default function App() {
 
   useEffect(async() => {
     const account = await findMetamaskAccount()
-    if(account !== null){setCurrentAccount(account), getAllWaves()}
+    if(account == null){
+      console.error("Some thing wrong with the account")
+    }
+    setCurrentAccount(account)
     
-  },[count])
+  },[])
 
   const handleInput = (e) => {
     
@@ -135,6 +139,7 @@ export default function App() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     wave();
+    getAllWaves();
   }
   
   return (
@@ -153,17 +158,18 @@ export default function App() {
         {!count || count === 0 ? (<p className="para">Total👋: ?, <span className="highligted-text"> Please Connect your wallet ->  Add a comment -> Wave at me 😀</span></p>) : (<div className="stats">
           <h3>Total 👋: {count}</h3>
         </div>)}
-
-        <form className="form" onSubmit={handleFormSubmit}>
-        <input className="input" type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Comment Something!"/>
+        
         {!currentAccount ? (
           <button className="waveButton" onClick={connectWallet}>
             Connect Wallet 🕺 🔐
           </button> 
-        ): (<button className="waveButton">
+        ): (
+      <form className="form" onSubmit={handleFormSubmit}>
+        <input className="input" type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Comment Something!"/>
+        <button className="waveButton">
           Wave at Me 👋
-        </button>)}
-        </form>
+        </button>
+      </form>)}
         {/*
          * If there is no currentAccount render this button
          */}
