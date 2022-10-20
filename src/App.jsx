@@ -39,7 +39,7 @@ export default function App() {
   const [message, setMessage] = useState("")
 
   //variable for contractAddress
-  const contractAddress = "0x56057A406bBB47cc5d9e79cAc506E45e503B85F1"
+  const contractAddress = "0x7E25EE1F6737B9B891939afD8Ba0F7BB6C2E1297"
   //variable for contractABI
   const contractABI = abi.abi;
 
@@ -64,6 +64,8 @@ export default function App() {
           })
         })
         setAllWaves(wavesCleaned)
+        console.log()
+        // setAllWaves(wavesCleaned)
         console.log(wavesCleaned)
       }else{
         console.log("Ethereum object doesn't exist!")
@@ -129,7 +131,6 @@ export default function App() {
       console.error("Some thing wrong with the account")
     }
     setCurrentAccount(account)
-    
   },[])
 
   const handleInput = (e) => {
@@ -138,9 +139,11 @@ export default function App() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    wave();
     getAllWaves();
+    wave();
   }
+
+  console.log(allWaves)
   
   return (
     <div className="mainContainer">
