@@ -39,14 +39,14 @@ export default function App() {
   const [message, setMessage] = useState("")
 
   //variable for contractAddress
-  const contractAddress = "0x7E25EE1F6737B9B891939afD8Ba0F7BB6C2E1297"
+  const contractAddress = "0xf77d28b0ecE51DB25da523B4246292F6128C002D"
   //variable for contractABI
   const contractABI = abi.abi;
 
   const getAllWaves = async() => {
-    try {
       const {ethereum} = window;
-
+    
+    try {
       if(ethereum){
         const provider = new ethers.providers.Web3Provider(ethereum)
         const signer = provider.getSigner()
@@ -55,18 +55,15 @@ export default function App() {
         //calling getAllWaves method
         const waves = await waveMePortalContract.getAllWaves();
 
-        let wavesCleaned = []
-        waves.forEach(wave=> {
-          wavesCleaned.push({
-            address: wave.waver,
-            timestamp: new Date(wave.timestamp * 1000),
-            message: wave.message
-          })
-        })
+        const wavesCleaned = waves.map(wave => {
+        return {
+          address: wave.waver,
+          timestamp: new Date(wave.timestamp * 1000),
+          message: wave.message,
+        };
+      });
         setAllWaves(wavesCleaned)
-        console.log()
-        // setAllWaves(wavesCleaned)
-        console.log(wavesCleaned)
+        // console.log(wavesCleaned)
       }else{
         console.log("Ethereum object doesn't exist!")
       }
@@ -74,6 +71,34 @@ export default function App() {
       console.log(error);
     }
   }
+
+  // Listen in for emitter events!
+  useEffect(() => {
+    let waveMePortalContract;
+
+    const onNewWave =(from, timestamp ,message) => {
+      console.log(from, timestamp ,message)
+      setAllWaves(prevState => [...prevState, {
+        address: from,
+        timestamp: new Date(timestamp * 1000),
+        message: message
+      },])
+    }
+
+    if(window.ethereum){
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      const signer = provider.getSigner()
+
+      waveMePortalContract = new ethers.Contract(contractAddress, contractABI, signer)
+      waveMePortalContract.on("NewWave", onNewWave)
+    }
+
+    return () => {
+      if(waveMePortalContract){
+        waveMePortalContract.off("NewWave", onNewWave)
+      }
+    }
+  }, [])
 
   const connectWallet = async () => {
     try {
@@ -107,8 +132,8 @@ export default function App() {
         let count = await waveMePortalContract.getTotalWaves();
         console.log("Retrieved total wave count...", count.toNumber());
 
-        //Hardcoding .wave() for now, later will take input from user.
-        const waveTxn = await waveMePortalContract.wave(message)
+        //Setting gas limit & passing the message
+        const waveTxn = await waveMePortalContract.wave(message, { gasLimit: 300000 })
         console.log("Mining...", waveTxn.hash)
 
         await waveTxn.wait()
@@ -142,8 +167,6 @@ export default function App() {
     getAllWaves();
     wave();
   }
-
-  console.log(allWaves)
   
   return (
     <div className="mainContainer">
