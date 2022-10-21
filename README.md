@@ -1,13 +1,22 @@
-## Running React on Repl.it
 
-[React](https://reactjs.org/) is a popular JavaScript library for building user interfaces.
+# Wave Me Portal 👋
 
-[Vite](https://vitejs.dev/) is a blazing fast frontend build tool that includes features like Hot Module Reloading (HMR), optimized builds, and TypeScript support out of the box.
+Built with the help of blockchain, This app allows user to anonymously send message & 👋 me.
+All the messages are stored on blockchain(Ethereum) & are Immutable.
 
-Using the two in conjunction is one of the fastest ways to build a web app.
+Just connect your wallet 🗝️ & 👋 at me, and if your are lucky you might win some Ethereum 🪙.
 
-### Getting Started
-- Hit run
-- Edit [App.jsx](#src/App.jsx) and watch it live update!
 
-By default, Replit runs the `dev` script, but you can configure it by changing the `run` field in the `.replit` file.
+## Link 🔗
+
+https://waveportal-starter-project.yes-im-harsh.repl.co/
+
+
+## Screenshots
+
+#### Step 1: Connect Your Wallet 🗝️
+![App Screenshot](https://i.ibb.co/Bg9T0c0/new.png)
+#### Step 2: Wave 👋
+![App Screenshot](https://i.ibb.co/PrMtK5d/Wave-Me-Portal2.png)
+
+
