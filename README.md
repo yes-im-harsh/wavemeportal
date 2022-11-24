@@ -1,10 +1,10 @@
 
 # Wave Me Portal 👋
 
-Built with the help of blockchain, This app allows user to anonymously send message & 👋 me.
+Built with the help of Public blockchain, This app allows user to anonymously send messages & 👋 at me.
 All the messages are stored on blockchain(Ethereum) & are Immutable.
 
-Just connect your wallet 🗝️ & 👋 at me, and if your are lucky you might win some Ethereum 🪙.
+Just connect your wallet 🗝️ & 👋 at me, and if your are lucky, then you can win some Ether(Ethereum) 🪙.
 
 
 ## Link 🔗
